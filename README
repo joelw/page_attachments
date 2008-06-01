@@ -1,3 +1,26 @@
 = Page Attachments
 
-Description goes here
+The Page Attachments extension allows Radiant administrators to attach files
+to pages. It can also generate and display thumbnails of uploaded images if
+image_science, mini-magick, or rmagick are installed on the server.
+
+Install the extension and run 
+
+ rake production db:migrate:extensions
+ rake production radiant:extensions:page_attachments:update
+
+When you login to your Radiant admin and edit a page, you should see an area
+below the main interface that says “Attachments (0)”. Click the "+" icon to
+add an attachment. You can upload multiple attachments at once. Attachments
+will not be saved or removed until the whole page is saved. Therefore, if you
+accidentally deleted something you meant to keep, simply cancel the page-edit.
+
+
+ <r:attachment name="file.txt">...</r:attachment>
+ <r:attachment:url name="file.jpg" [size="icon"]/>
+ <r:attachment:#{key} name="file.jpg" [size="icon"]/>
+ <r:attachment:image name="file.jpg" [size="icon"]/>
+
+ <r:attachment:link name="file.jpg" [size="thumbnail"]/>
+
+ <r:attachment:each [order="asc|desc"] [by="filename|size|created_at|..."]>

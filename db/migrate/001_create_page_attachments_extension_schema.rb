@@ -13,6 +13,7 @@ class CreatePageAttachmentsExtensionSchema < ActiveRecord::Migration
       t.column "updated_at",   :datetime
       t.column "updated_by",   :integer
       t.column "page_id",      :integer
+      t.column "description",  :string
     end
   end
   

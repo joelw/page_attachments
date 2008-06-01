@@ -1,6 +1,6 @@
 function add_attachment() {
   var attachments_box = $('attachments');
-  var template = new Template('<p class="attachment" id="file_#{id}"><label>Upload file: </label><input type="file" name="page[add_attachments][]" /> <a href="#" onclick="Element.remove(\'file_#{id}\')">Cancel</a></p>');
+  var template = new Template('<p class="attachment" id="file_#{id}"><label>Upload file: </label><input type="file" name="page[add_attachments][]" /> <label>Description:</label><input type="text" name="page[describe_attachments][]" /><a href="#" onclick="Element.remove(\'file_#{id}\')">Cancel</a></p>');
   new Insertion.Bottom(attachments_box, template.evaluate({id: Math.round(Math.random() * 100000)}));
 }
 function remove_attachment(id){

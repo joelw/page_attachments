@@ -4,6 +4,7 @@ module PageAttachmentAssociations
       has_many :attachments, :class_name => "PageAttachment", :dependent => :destroy
   
       attr_accessor :add_attachments
+      attr_accessor :describe_attachments
       attr_accessor :delete_attachments
       after_save :save_attachments
       after_save :destroy_attachments
@@ -29,8 +30,8 @@ module PageAttachmentAssociations
       
     def save_attachments
       if @add_attachments
-        @add_attachments.each do |attachment|
-          attachments << PageAttachment.new(:uploaded_data => attachment)
+         @add_attachments.zip(@describe_attachments).each do |attachment, description|
+           attachments << PageAttachment.new(:uploaded_data => attachment, :description => description)
         end  
       end
       @add_attachments = nil
